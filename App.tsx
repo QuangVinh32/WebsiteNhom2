@@ -52,6 +52,7 @@ function App() {
   return (
     <div className="App">
       <h3>Todo1 ...</h3>
+      <h1>Lê Quang Vinh</h1>
       <input type="text" placeholder='Enter todo...' value={inputText} onChange={handleInputChange} />
       <button onClick={handleAddJob}>Add</button>
       <ul>
