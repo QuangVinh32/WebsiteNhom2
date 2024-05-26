@@ -51,7 +51,7 @@ function App() {
 
   return (
     <div className="App">
-      <h3>Todo ...</h3>
+      <h3>Todo1 ...</h3>
       <input type="text" placeholder='Enter todo...' value={inputText} onChange={handleInputChange} />
       <button onClick={handleAddJob}>Add</button>
       <ul>
