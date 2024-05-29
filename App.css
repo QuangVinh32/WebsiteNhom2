@@ -2,16 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -35,4 +25,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+ul {
+  list-style-type: none; /* Ẩn dấu chấm của các phần tử li trong ul */
+  padding: 0; /* Loại bỏ khoảng đệm mặc định của ul */
+  margin: 0; /* Loại bỏ khoảng cách mặc định của ul */
+}
+
+li {
+  padding: 5px 0; /* Tùy chọn: thêm khoảng đệm cho các phần tử li */
 }
