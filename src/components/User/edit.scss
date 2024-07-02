@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  // Chỉnh font chữ và màu chung
+  body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  // Style cho trang chỉnh sửa
+  h1 {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  div {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  a {
+    display: inline-block;
+    margin-left: 10px;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 1px solid #333;
+    border-radius: 5px;
+  }
+  
+  a:hover {
+    background-color: #333;
+    color: white;
+  }

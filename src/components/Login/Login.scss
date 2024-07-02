@@ -1,0 +1,67 @@
+.App-login {
+    margin-left: 850px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90vh;
+  } 
+  
+  .form-login {
+    margin-top: 80px;
+    width: 450px;
+    padding: 20px;
+    height: 380px;
+    background-color: rgb(33, 31, 31);
+    border-radius: 30px;
+    border: 2px solid rgb(0, 80, 174);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+  
+  h1 {
+    color: #333333;
+  }
+  
+  label {
+    margin-bottom: 40px;
+    font-weight: bold;
+    
+  }
+  
+  input {
+    width: 95%;
+    padding: 10px;
+    height: 30px;
+    font-size: 20px;
+    border: 1px solid #cccccc;
+    // border-radius: 30px;
+    outline: none;
+    text-indent:5px;  
+
+    
+  }
+  
+.button-login {
+    margin-top: 30px;
+    margin-left: 150px;
+    background-color: rgb(0,80,174);
+    width: 150px;
+    height: 55px;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #45a049;
+    }
+  }
+  .sign{
+    margin-top: 20px;
+  }
+
+ 
+  

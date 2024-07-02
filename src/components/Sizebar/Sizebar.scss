@@ -1,0 +1,39 @@
+.cross{
+    height:80%;
+    padding:20px;
+    overflow:inherit;
+    background-color: rgb(33, 31, 31);
+
+}
+.ul-size li{
+    padding: 10px;
+    width: 200px;
+    font-size: 20px;
+    border: 3px solid rgb(255,147,0);
+    margin-bottom: 15px;
+    // border-radius: 30px;  
+    
+    
+}
+.ul-size{
+    font-size: 20px;
+    height: 100%;
+}
+li {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    text-decoration:none;
+
+  }
+  li a {
+    justify-self: start;
+    text-decoration: none;
+    color: white;
+    &:hover {
+        border-bottom: 2px solid #fff;
+      }
+
+  }
+  
+  

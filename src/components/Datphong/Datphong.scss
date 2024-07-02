@@ -1,0 +1,127 @@
+.form-dp-all{
+    background-color: white;
+    width: 100%;
+    height: 180vh;
+}
+// .form-dp{
+//     position: absolute;
+//     background-color: rgb(238, 191, 83);
+//     border: 1px solid rgb(34, 28, 210);
+//     width: 800px;
+//     height: 220px;
+//     display: flex;
+//     // justify-content: center;
+//     // align-items: center;
+//     margin-left: 330px;
+//     margin-top: 50px;
+//     // background-color: white;
+   
+// }
+.form{
+    margin-top: 15px;
+    margin-left: 700px;
+    width: 800px;
+    height: 240px;
+    display: flex;
+    background-color: rgb(216, 212, 212);
+    border-radius: 10px
+}
+.img{
+    border-radius: 10px;
+    
+    width: 260px;
+    height: 240px;
+    background-color: aquamarine;
+    // border: 1px solid black;
+    // opacity: 0.3;
+    background-image: url(https://cf.bstatic.com/xdata/images/hotel/square600/304355783.webp?k=ceb15e45c7bbbfc88e02249509836d823fac0253e056c5322de1d5ba89113541&o=);
+    // background-repeat: no-repeat;
+    // background-attachment: fixed;
+    background-size: 100% 100%;
+    
+
+}
+.n1{
+    // margin-left: 10px;
+    
+    border-right: 1px solid blue;
+    font-size: 20px;
+    color: black;
+    width: 350px;
+    height: 218px;
+
+}
+.tenphong{
+    margin-left: 10px;
+    padding: 8px;
+}
+.loaiphong{
+    margin-left: 10px;
+    padding: 8px;
+}
+.trinhtrang{
+    padding: 8px;
+    margin-left: 10px;
+
+}
+.chittietphong{
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 12px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+.dichvu{
+    font-size: 20px;
+    padding: 12px;
+    border-radius: 10px;
+
+
+
+}
+.datphong{
+    padding: 15px;
+    font-size: 20px;
+    margin-left:30px;
+    border-radius: 10px;
+
+
+}
+.n2{
+    width: 200px;
+    color: black;
+    font-size: 20px;
+    
+    // border: 1px solid blue;
+}
+.dongia{
+    margin-left: 20px;
+    padding: 8px;
+}
+.flex{
+
+    display: flex;
+}
+.tt{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    justify-content: space-around;
+    width: 600px;
+    margin-left: 780px;
+    margin-top: 20px;
+}
+.tt p {
+    padding: 10px;
+    border: 1px solid black;
+    color: black;
+    border-radius: 10px;
+    background-color: rgb(216, 212, 212);
+
+
+}
+.icon-dp{
+    font-size:25px;
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-around;
+}
