@@ -34,7 +34,7 @@ const Products = () => {
     return (
         <div>
             <div className='menu'>
-                <ul className="navbar-nav">
+                <ul className="navbar-nav-1">
                     <h3>Danh mục sản phẩm</h3>
                     <li className="nav-item-1">
                         <Link className="nav-link" to='/'>Laptop Mới</Link>
@@ -55,8 +55,39 @@ const Products = () => {
                 <div className='cover'>
                     <h3>bìa sản phẩm</h3>
                 </div>
-                <div className='address'>
-                    <h3>Dia chi</h3>
+                <div className="right-address">
+                    <div className="js-address-showroom">
+                        <div className="cv-carousel">
+                            <div className="item">
+                                <b>Hà Nội - 125 Trần Đại Nghĩa</b>
+                                <a className="phone" href="https://zalo.me/0904583588">Zalo: 0904.583.588</a>
+                            </div>
+                            <div className="item">
+                                <b>Hà Nội - 34 Hồ Tùng Mậu</b>
+                                <a className="phone" href="https://zalo.me/0911042665">Zalo: 0911.042.665</a>
+                            </div>
+                            <div className="item">
+                                <b>Hà Nội - Nguyễn Văn Lộc</b>
+                                <a className="phone" href="https://zalo.me/0904666488">Zalo: 0904.666.488</a>
+                            </div>
+                            <div className="item">
+                                <b>Hà Nội - 277 Nguyễn Văn Cừ</b>
+                                <a className="phone" href="https://zalo.me/0906299288">Zalo: 0906.299.288</a>
+                            </div>
+                          <div className="item">
+                                <b>Hà Nội - 376 Phạm Văn Đồng</b>
+                                <a className="phone" href="https://zalo.me/0906299788">Zalo: 0906.299.788</a>
+                            </div>
+                            <div className="item">
+                                <b>TP. HCM - Nguyễn Thiện Thuật</b>
+                                <a className="phone" href="https://zalo.me/0902176788">Zalo: 0902.176.788</a>
+                            </div>
+                            <div className="item">
+                                <b>Thái Nguyên - 45 Lương Ngọc Quyến</b>
+                                <a className="phone" href="https://zalo.me/0972365228">Zalo: 0972.365.228</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

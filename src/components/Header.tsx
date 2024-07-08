@@ -26,18 +26,18 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
+                
 
                 <div className="ml-auto">
                 <div style={{ marginTop:"7px"}} className=''>
                         <span>Lê Quang Vinh</span>
-                        <i style={{fontSize:"25px",marginLeft:"7px"}} className="fa-brands fa-github"></i>
+                        <i style={{fontSize:"25px",marginLeft:"5px"}} className="fa-brands fa-github"></i>
                         </div>
                     <ul className="navbar-nav">
-  
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownCart" data-bs-auto-close="outside" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                <i className="fas fa-shopping-cart"></i>
+                                <i style={{marginLeft:"100px"}} className="fas fa-shopping-cart"></i>
                                 <span className="position-absolute top-0 start-1 badge badge-pill bg-danger">{cartQty}</span>
                             </a>
 
