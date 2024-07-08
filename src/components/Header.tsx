@@ -43,7 +43,7 @@ const Header = () => {
 
                             <ul className="dropdown-menu dropdown-menu-end cart-dropdown" aria-labelledby="navbarDropdownCart">
                                 <li>
-                                    <h3 className="dropdown-item">Your Cart</h3>
+                                    <h3 className="dropdown-item">Cart</h3>
                                 </li>
                                 <li>
                                     <hr className="dropdown-divider" />

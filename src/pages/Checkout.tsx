@@ -29,8 +29,8 @@ const Checkout = () => {
                                 <td><img src={item.image} className='img-fluid rounded' alt={item.productName} /></td>
                                 <td>{item.productName}</td>
                                 <td>{formatCurrency(item.price)}</td>
-                                <td>{item.qty}
-                                    <button type="button" className="btn btn-sm btn-primary ms-3 me-1" onClick={() => decreaseQty(item.productId)}><strong>-</strong></button>
+                                <td style={{width:"100px"}}>{item.qty}
+                                    <button type="button" className="btn btn-sm btn-primary ms-1 me-1" onClick={() => decreaseQty(item.productId)}><strong>-</strong></button>
                                     <button type="button" className="btn btn-sm btn-primary" onClick={() => increaseQty(item.productId)}><strong>+</strong></button>
                                 </td>
                                 <td>{formatCurrency(item.price * item.qty)}</td>
