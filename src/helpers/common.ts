@@ -1,3 +1,5 @@
-export const formatCurrency = (amount: number): string => {
-    return Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)
-}
+// utils.js
+export const formatCurrency = (price: number | bigint) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  }
+  

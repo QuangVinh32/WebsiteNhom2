@@ -1,0 +1,40 @@
+
+/* Màu cho biểu tượng Facebook */
+.footer-icon.facebook {
+    color: #4267B2; /* Màu xanh của Facebook */
+}
+
+.footer-icon.facebook:hover {
+    color: #365899; /* Màu khi hover của Facebook */
+}
+
+/* Màu cho biểu tượng YouTube */
+.footer-icon.youtube {
+    color: #FF0000; /* Màu đỏ của YouTube */
+}
+
+.footer-icon.youtube:hover {
+    color: #CC0000; /* Màu khi hover của YouTube */
+}
+
+/* Màu cho biểu tượng TikTok */
+.footer-icon.tiktok {
+    color: #000000; /* Màu đen của TikTok */
+}
+
+.footer-icon.tiktok:hover {
+    color: #333333; /* Màu khi hover của TikTok */
+}
+.list-unstyled li a{
+    text-decoration: none;
+    color: #CC0000;
+    font-style: italic;
+    &:hover{
+        color: #16d52f;
+        
+    }
+}
+.list-unstyled a{
+    color: #CC0000;
+}
+
