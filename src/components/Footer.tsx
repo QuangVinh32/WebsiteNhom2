@@ -57,7 +57,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="tel:+8498732156" className="text-dark">
-                  +84.98732156
+                  +84.357700838
                 </a>
               </li>
             </ul>

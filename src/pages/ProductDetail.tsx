@@ -6,7 +6,7 @@ import "../pages/ProductDetail.scss";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGift } from "@fortawesome/free-solid-svg-icons";
-import { formatCurrency } from "../helpers/common";
+import { formatCurrency, getUserInfo } from "../helpers/common";
 
 type ProductItem = {
   productId: number;
@@ -26,6 +26,7 @@ type Review = {
     fullName: string;
     image: string;
   };
+  createdAt: string; // Ensure you have createdAt or similar field
 };
 
 const ProductDetail: React.FC = () => {
@@ -34,14 +35,15 @@ const ProductDetail: React.FC = () => {
   const [error, setError] = useState<string>("");
   const [rating, setRating] = useState<number>(0);
   const [content, setContent] = useState<string>("");
+  const user = getUserInfo();
+  console.log(user);
 
-  const averageRating =
-    product && product.reviews
-      ? (
-          product.reviews.reduce((sum, review) => sum + review.rate, 0) /
-          product.reviews.length
-        ).toFixed(1)
-      : "0";
+  const averageRating = product?.reviews?.length
+    ? (
+        product.reviews.reduce((sum, review) => sum + review.rate, 0) /
+        product.reviews.length
+      ).toFixed(1)
+    : "0";
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -110,21 +112,25 @@ const ProductDetail: React.FC = () => {
             <div className="col-md-4">
               <img
                 style={{ width: "100%" }}
-                src={product.image}
+                src={product.image || "default_image_url_here"}
                 className="img-fluid rounded-start"
-                alt={product.productName}
+                alt={product.productName || "Product Image"}
               />
             </div>
             <div className="col-md-8">
               <div className="card-body">
-                <h5 className="card-title">{product.productName}</h5>
+                <h5 className="card-title">
+                  {product.productName || "No Name"}
+                </h5>
                 <p className="card-text">
                   <i className="fas fa-barcode"></i>
-                  <strong>Product Code:</strong> {product.productCode}
+                  <strong>Product Code:</strong>{" "}
+                  {product.productCode || "No Code"}
                 </p>
                 <p className="card-text">
                   <i className="fas fa-info-circle"></i>
-                  <strong>Description:</strong> {product.descriptionProduct}
+                  <strong>Description:</strong>{" "}
+                  {product.descriptionProduct || "No Description"}
                 </p>
                 <p className="card-text">
                   <i className="fas fa-tag"></i>
@@ -165,23 +171,24 @@ const ProductDetail: React.FC = () => {
               <i className="fas fa-star"></i> Trung bình đánh giá:{" "}
               {averageRating}
             </p>
-            {product.reviews.map((review, index) => (
+            {product.reviews?.map((review, index) => (
               <div key={index} className="review">
                 <div className="profile">
                   <img
                     style={{ width: "50px", height: "50px" }}
-                    src={review.users.image}
-                    alt=""
+                    src={review.users?.image || "default_user_image_url_here"}
+                    alt={review.users?.fullName || "User"}
                   />
                   <div
                     style={{ marginLeft: "10px", marginTop: "10px" }}
                     className="name-user"
                   >
-                    {review.users.fullName}
+                    {review.users?.fullName || "Anonymous"}
                   </div>
                 </div>
                 <div className="rating">{renderStars(review.rate)}</div>
-                <p>{review.content}</p>
+                <p>{review.content || "No content"}</p>
+                <p className="time">{review.createdAt || "Unknown time"}</p>
                 <div style={{ color: "orangered" }} className="feedback">
                   Phản hồi
                 </div>

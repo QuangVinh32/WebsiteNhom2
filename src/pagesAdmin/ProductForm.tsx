@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import productService from "../services/productService";
 
 enum ProductStatus {
   AVAILABLE = "name1",
@@ -12,10 +13,23 @@ type ProductFormProps = {
   mode: "create" | "update";
 };
 
+export type CreateProduct = {
+  productCode: string;
+  productName: string;
+  descriptionProduct: string;
+  price: number;
+  discount: number;
+  image: string;
+  status: ProductStatus;
+  soLuongTonKho: number;
+  nsxId: number | undefined;
+  categoryId: number | undefined;
+};
+
 const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
   const { productId } = useParams<{ productId: string }>();
   const navigate = useNavigate();
-  const [productData, setProductData] = useState({
+  const [productData, setProductData] = useState<CreateProduct>({
     productCode: "",
     productName: "",
     descriptionProduct: "",
@@ -24,15 +38,19 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
     image: "",
     status: ProductStatus.AVAILABLE,
     soLuongTonKho: 0,
+    nsxId: 0,
+    categoryId: 0,
   });
+  console.log(productData);
   const [error, setError] = useState<string>("");
+  const [alertMessage, setAlertMessage] = useState<string>("");
 
   useEffect(() => {
     if (mode === "update" && productId) {
       const fetchProduct = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8080/api/v1/product/find-by-id/${productId}`
+            `http://localhost:8080/api/v1/product/find-by-id/v1/${productId}`
           );
           setProductData(response.data);
           setError("");
@@ -58,24 +76,42 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const currentTime = new Date().toISOString();
-    const finalProductData = { ...productData, createdTime: currentTime };
+    const finalProductData = { ...productData };
 
-    try {
-      if (mode === "create") {
-        await axios.post(
-          "http://localhost:8080/api/v1/product/create-product",
-          finalProductData
-        );
-      } else if (mode === "update" && productId) {
-        await axios.put(
-          `http://localhost:8080/api/v1/product/update-product/${productId}`,
-          finalProductData
-        );
+    if (mode === "create") {
+      const createProductData = {
+        ...finalProductData,
+        createdTime: currentTime,
+        nsxId: productData.nsxId ? productData.nsxId : undefined,
+        categoryId: productData.categoryId ? productData.categoryId : undefined,
+      };
+
+      try {
+        console.log("Sending create request with data:", createProductData);
+        await productService.create(createProductData);
+        setAlertMessage("Product created successfully!");
+        setTimeout(() => navigate("/admin/products"), 2000); // Redirect after 2 seconds
+      } catch (error) {
+        console.error("Error saving product:", error);
+        setError("Failed to save product data.");
       }
-      navigate("/admin/products");
-    } catch (error) {
-      console.error("Error saving product:", error);
-      setError("Failed to save product data.");
+    } else if (mode === "update" && productId) {
+      // For update, do not include createdTime and handle nsxId and categoryId as integers
+      const updateProductData = {
+        ...finalProductData,
+        nsxId: productData.nsxId ? productData.nsxId : undefined,
+        categoryId: productData.categoryId ? productData.categoryId : undefined,
+      };
+
+      try {
+        console.log("Sending update request with data:", updateProductData);
+        await productService.update(parseInt(productId), updateProductData);
+        setAlertMessage("Product updated successfully!");
+        setTimeout(() => navigate("/admin/products"), 2000); // Redirect after 2 seconds
+      } catch (error) {
+        console.error("Error saving product:", error);
+        setError("Failed to save product data.");
+      }
     }
   };
 
@@ -85,6 +121,9 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
         {mode === "create" ? "Thêm sản phẩm mới" : "Chỉnh sửa sản phẩm"}
       </h3>
       {error && <div className="alert alert-danger">{error}</div>}
+      {alertMessage && (
+        <div className="alert alert-success">{alertMessage}</div>
+      )}
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="productCode" className="form-label">
@@ -189,6 +228,32 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
           </select>
         </div>
         <div className="mb-3">
+          <label htmlFor="nsxId" className="form-label">
+            NSX ID
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="nsxId"
+            name="nsxId"
+            value={productData.nsxId || ""}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="categoryId" className="form-label">
+            Category ID
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="categoryId"
+            name="categoryId"
+            value={productData.categoryId || ""}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-3">
           <label htmlFor="soLuongTonKho" className="form-label">
             Stock Quantity
           </label>
@@ -202,9 +267,21 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">
-          {mode === "create" ? "Thêm sản phẩm" : "Cập nhật sản phẩm"}
-        </button>
+        <div
+          style={{ display: "flex", justifyContent: "space-between" }}
+          className="button-form-prduct"
+        >
+          <button type="submit" className="btn btn-primary">
+            {mode === "create" ? "Thêm sản phẩm" : "Cập nhật sản phẩm"}
+          </button>
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={() => navigate("/admin/products")}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

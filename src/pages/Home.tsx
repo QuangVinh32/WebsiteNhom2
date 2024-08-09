@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-cube";
 import "swiper/css/pagination";
@@ -14,7 +13,7 @@ import { EffectCube, Pagination } from "swiper/modules";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Swiper
         effect={"cube"}
         grabCursor={true}
@@ -41,6 +40,6 @@ export default function Home() {
           <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
         </SwiperSlide>
       </Swiper>
-    </div>
+    </>
   );
 }

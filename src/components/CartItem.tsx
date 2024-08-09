@@ -23,7 +23,7 @@ const CartItem = ({
     <tr>
       <td>
         <img
-          style={{ width: "300px", height: "50px" }}
+          style={{ width: "180px", height: "50px" }}
           src={image}
           className="img-fluid rounded"
           alt="Product 1"

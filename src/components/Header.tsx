@@ -1,18 +1,27 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import CartItem from "./CartItem";
 import { useShoppingContext } from "../contexts/ShoppingContext";
-import { formatCurrency } from "../helpers/common";
+import { formatCurrency, getUserInfo } from "../helpers/common";
 import "../components/Header.scss"; // Đảm bảo bạn đã nhập tệp CSS của mình
+import { useProductContext } from "../contexts/ProductContext";
 
 const Header = () => {
+  const user = getUserInfo();
+  const navigate = useNavigate();
+  const { searchText, handleSearchTextChange } = useProductContext();
   const { cartItems, cartQty, totalPrice } = useShoppingContext();
+
+  const handleLogOut = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          <strong style={{ color: "orangered" }}>VINH DEV DEMO</strong>
+          <strong style={{ color: "orange" }}>VINH DEV DEMO</strong>
         </Link>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
@@ -32,7 +41,7 @@ const Header = () => {
                 className="nav-link"
                 to="/products"
                 style={({ isActive }) => ({
-                  color: isActive ? "orangered" : "black",
+                  color: isActive ? "orange" : "black",
                 })}
               >
                 Products
@@ -41,7 +50,7 @@ const Header = () => {
             <li className="nav-item">
               <NavLink
                 className="nav-link"
-                to="/admin/manager"
+                to="/admin"
                 style={({ isActive }) => ({
                   color: isActive ? "green" : "black",
                 })}
@@ -56,12 +65,14 @@ const Header = () => {
               style={{ fontStyle: "italic", fontSize: "17px", padding: "5px" }}
               type="text-input-1"
               placeholder="Tìm kiếm sản phẩm..."
+              value={searchText}
+              onChange={handleSearchTextChange}
             />
             <i
               style={{
                 width: "50px",
                 padding: "11.75px",
-                backgroundColor: "orangered",
+                backgroundColor: "orange",
                 textAlign: "center",
               }}
               className="fa-sharp fa-solid fa-magnifying-glass"
@@ -69,13 +80,22 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="ml-auto">
+        <div>
           <div style={{ marginTop: "7px" }} className="">
-            <span>Lê Quang Vinh</span>
-            <i
-              style={{ fontSize: "25px", marginLeft: "5px" }}
-              className="fa-brands fa-github"
-            ></i>
+            {user && user.username ? (
+              <>
+                <span style={{ marginRight: "10px" }}>
+                  Xin chào {user.username}
+                </span>
+                <button className="btn-logout" onClick={handleLogOut}>
+                  log out
+                </button>
+              </>
+            ) : (
+              <div className="btn-login">
+                <Link to={"/login"}>Login</Link>
+              </div>
+            )}
           </div>
           <ul className="navbar-nav">
             <li className="nav-item dropdown">
