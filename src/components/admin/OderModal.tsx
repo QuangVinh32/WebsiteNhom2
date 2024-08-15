@@ -80,7 +80,7 @@ function OrderModal({
             <p>
               <strong>Note:</strong> {orderInfo.note}
             </p>
-            <h5>Order Details</h5>
+            {/* <h5>Order Details</h5> */}
             <table className="table">
               <thead>
                 <tr>

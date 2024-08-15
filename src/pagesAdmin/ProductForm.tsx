@@ -47,11 +47,9 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
 
   useEffect(() => {
     if (mode === "update" && productId) {
-      const fetchProduct = async () => {
+      const fetchProduct = async (productId: number) => {
         try {
-          const response = await axios.get(
-            `http://localhost:8080/api/v1/product/find-by-id/v1/${productId}`
-          );
+          const response = await productService.get(productId);
           setProductData(response.data);
           setError("");
         } catch (error) {
@@ -60,7 +58,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
         }
       };
 
-      fetchProduct();
+      fetchProduct(Number(productId));
     }
   }, [mode, productId]);
 

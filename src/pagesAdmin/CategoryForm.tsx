@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import categoryService from "../services/categoryService";
 
 type CategoryFormProps = {
   mode: "create" | "update";
@@ -18,15 +19,13 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ mode }) => {
   const [alert, setAlert] = useState<{ type: string; message: string } | null>(
     null
   );
-
   useEffect(() => {
     if (mode === "update" && categoryId) {
       console.log("Fetching category data...");
-      const fetchCategory = async () => {
+
+      const fetchCategory = async (categoryId: number) => {
         try {
-          const response = await axios.get(
-            `http://localhost:8080/api/v1/categories/find-by-id/${categoryId}`
-          );
+          const response = await categoryService.get(categoryId); // Convert categoryId to number
           console.log("Fetched Category Data:", response.data); // Check data
           setCategoryData({
             description: response.data.description || "",
@@ -39,7 +38,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ mode }) => {
         }
       };
 
-      fetchCategory();
+      fetchCategory(Number(categoryId));
     }
   }, [mode, categoryId]);
 
@@ -55,19 +54,13 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ mode }) => {
 
     try {
       if (mode === "create") {
-        await axios.post(
-          "http://localhost:8080/api/v1/categories/create-category",
-          categoryData
-        );
+        await categoryService.create(categoryData);
         setAlert({
           type: "success",
           message: "Category created successfully.",
         });
       } else if (mode === "update" && categoryId) {
-        await axios.put(
-          `http://localhost:8080/api/v1/categories/update-category/${categoryId}`,
-          categoryData
-        );
+        await categoryService.update(parseInt(categoryId), categoryData);
         setAlert({
           type: "success",
           message: "Category updated successfully.",

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Spinner } from "reactstrap";
+import categoryService from "../services/categoryService";
 
 type Category = {
   categoryId: number;
@@ -28,16 +29,20 @@ const AdminCategory: React.FC = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8080/api/v1/categories/find-all-category?page=${currentPage}&size=5&search=${searchTerm}&idAsc=${sortAsc}&idDesc=${sortDesc}`
-        );
-        setCategories(response.data.content);
-        setTotalPages(response.data.totalPages);
+        const params = {
+          page: currentPage,
+          search: searchTerm,
+          idAsc: sortAsc,
+          idDesc: sortDesc,
+        };
+        const { data } = await categoryService.getAll(params);
+        setCategories(data.content);
+        setTotalPages(data.totalPages);
         setAlert(null); // Clear alert
       } catch (error) {
         console.error("Error fetching categories:", error);
         setAlert({ type: "danger", message: "Failed to load categories." });
-        setTimeout(() => navigate("/admin/products"), 2000); // Redirect after 2 seconds
+        setTimeout(() => navigate("/admin/products"), 2000);
       } finally {
         setLoading(false);
       }
@@ -48,22 +53,13 @@ const AdminCategory: React.FC = () => {
 
   const handleDelete = async (categoryId: number) => {
     try {
-      await axios.delete(
-        `http://localhost:8080/api/v1/categories/delete-category/${categoryId}`
-      );
+      await categoryService.delete(categoryId);
       setCategories(
         categories.filter((category) => category.categoryId !== categoryId)
       );
-      setAlert({ type: "success", message: "Category deleted successfully." });
-
-      // Hide alert after 2 seconds
-      setTimeout(() => setAlert(null), 2000);
     } catch (error) {
       console.error("Error deleting category:", error);
-      setAlert({ type: "danger", message: "Failed to delete category." });
-
-      // Hide alert after 2 seconds
-      setTimeout(() => setAlert(null), 2000);
+      setError("Failed to delete category.");
     }
   };
 
@@ -195,3 +191,6 @@ const AdminCategory: React.FC = () => {
 };
 
 export default AdminCategory;
+function setError(arg0: string) {
+  throw new Error("Function not implemented.");
+}

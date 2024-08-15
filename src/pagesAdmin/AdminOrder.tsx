@@ -4,6 +4,7 @@ import { Button, Spinner } from "reactstrap";
 import OrderFormModal from "../components/admin/OrderFormModal";
 import { formatCurrency } from "../helpers/common";
 import OrderModal from "../components/admin/OderModal";
+import orderService from "../services/orderService";
 // import OrderModal from "../components/admin/OrderModal";
 
 type OrderDetail = {
@@ -45,11 +46,12 @@ const AdminOrder: React.FC = () => {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(
-        `http://localhost:8080/api/v1/order/find-all-order?page=${
-          currentPage - 0
-        }&size=4&search=${searchTerm}&status=${statusFilter}`
-      );
+      const params = {
+        page: currentPage,
+        search: searchTerm,
+        size: 4, // Hoặc số lượng trang bạn muốn
+      };
+      const response = await orderService.getAll(params);
       setOrders(response.data.content);
       setTotalPages(response.data.totalPages);
       setError("");
@@ -65,11 +67,9 @@ const AdminOrder: React.FC = () => {
     fetchOrders();
   }, [currentPage, searchTerm, statusFilter]);
 
-  const fetchOrderById = async (id: number) => {
+  const fetchOrderById = async (orderId: number) => {
     try {
-      const response = await axios.get(
-        `http://localhost:8080/api/v1/order/find-order-by-id?id=${id}`
-      );
+      const response = await orderService.get(orderId);
       setSelectedOrder(response.data);
     } catch (error) {
       console.error("Error fetching order details:", error);
