@@ -3,8 +3,8 @@ import "../pages/Login.scss";
 
 import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
-import loginImg from "../assests/images/login.png";
-import userIcon from "../assests/images/user.png";
+import loginImg from "../assets/images/login.png";
+import userIcon from "../assets/images/user.png";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { parseJwt } from "../helpers/common";

@@ -1,57 +1,46 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../pages/Register.scss";
-import register from "../assests/images/register.png";
-import userIcon from "../assests/images/user.png";
-import { useNavigate } from "react-router-dom";
+import register from "../assets/images/register.png";
+import userIcon from "../assets/images/user.png";
 
-const Register = () => {
+const Register: React.FC = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    email: "",
+    fullName: "",
+    phone: "",
+    image: "",
+  });
   const navigate = useNavigate();
 
-  // const baseUrlAuth = "http://13.212.151.155:8888/api";
-  const baseUrlAuth = "http://localhost:8888/api";
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  //   const handleRegister = async (event) => {
-  //     event.preventDefault();
-  //     setLoading(true);
-
-  //     const newUser = {
-  //       username: username,
-  //       password: password,
-  //       email: email,
-  //       fullName: fullName,
-  //       phone: phone,
-  //     };
-
-  // try {
-  //   const response = await fetch(baseUrlAuth + "/register", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(newUser),
-  //   });
-
-  //   if (response.ok) {
-  //     alert("đăng kí thành công");
-  //     navigate("/login");
-  //   } else {
-  //     throw new Error("Đăng ký không thành công.");
-  //   }
-  // } catch (error) {
-  //   console.log(error);
-  //   setError(error.message);
-  // } finally {
-  //   setLoading(false);
-  // }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/register",
+        formData
+      );
+      console.log(response.data);
+      alert("Registration successful!");
+      navigate("/login");
+    } catch (error: any) {
+      console.error(
+        error.response?.data || error.message || "Unknown error occurred"
+      ); // handle error response
+      alert("Registration failed!");
+    }
+  };
 
   return (
     <section>
@@ -60,66 +49,80 @@ const Register = () => {
           <Col lg="8" className="m-auto">
             <div className="register__container d-flex justify-content-between">
               <div className="register__img">
-                <img style={{ marginTop: "60px" }} src={register} alt="" />
+                <img
+                  style={{ marginTop: "60px" }}
+                  src={register}
+                  alt="Register"
+                />
               </div>
               <div className="register__form">
                 <div className="user">
-                  <img src={userIcon} alt="" />
+                  <img src={userIcon} alt="User Icon" />
                 </div>
                 <h2>Register</h2>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                   <FormGroup>
                     <input
                       type="text"
-                      placeholder="username"
+                      placeholder="Username"
                       required
-                      id="username"
-                      autoFocus
-                      //   onChange={(event) => setUsername(event.target.value)}
+                      name="username"
+                      value={formData.username}
+                      onChange={handleChange}
                     />
                   </FormGroup>
                   <FormGroup>
                     <input
                       type="password"
-                      placeholder="password"
+                      placeholder="Password"
                       required
-                      id="password"
-                      //   onChange={(event) => setPassword(event.target.value)}
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
                     />
                   </FormGroup>
                   <FormGroup>
                     <input
                       type="email"
-                      placeholder="email"
+                      placeholder="Email"
                       required
-                      id="email"
-                      //   onChange={(event) => setEmail(event.target.value)}
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                     />
                   </FormGroup>
                   <FormGroup>
                     <input
                       type="text"
-                      placeholder="fullName"
+                      placeholder="Full Name"
                       required
-                      id="fullName"
-                      //   onChange={(event) => setFullName(event.target.value)}
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleChange}
                     />
                   </FormGroup>
                   <FormGroup>
                     <input
                       type="text"
-                      placeholder="phone"
+                      placeholder="Phone"
                       required
-                      id="phone"
-                      //   onChange={(event) => setPhone(event.target.value)}
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <input
+                      type="text"
+                      placeholder="Image URL"
+                      required
+                      name="image"
+                      value={formData.image}
+                      onChange={handleChange}
                     />
                   </FormGroup>
                   <Button
-                    style={{
-                      color: "black",
-                      backgroundColor: "white",
-                      //   border: "1px solid white",
-                    }}
+                    style={{ color: "black", backgroundColor: "white" }}
                     className="btn"
                     type="submit"
                   >
@@ -127,8 +130,7 @@ const Register = () => {
                   </Button>
                 </Form>
                 <p>
-                  Bạn đã có tài khoản hãy đăng nhập
-                  <Link to="/login">Đăng Nhập</Link>
+                  Already have an account? <Link to="/login">Login here</Link>
                 </p>
               </div>
             </div>

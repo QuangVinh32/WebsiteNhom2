@@ -190,37 +190,37 @@ type MenuData = {
 
 const address: Address[] = [
   {
-    nameAddress: "Hà Nội - 125 Trần Đại Nghĩa",
+    nameAddress: "Hà Nội - 96 Trần Đại Nghĩa",
     linkAddress: "https://zalo.me/0904583588",
     namelinkAddress: "Zalo: 0904.583.588",
   },
   {
-    nameAddress: "Hà Nội - 125 Trần Đại Nghĩa",
+    nameAddress: "Hà Nội - 87 Cầu giấy",
     linkAddress: "https://zalo.me/0904583588",
     namelinkAddress: "Zalo: 0904.583.588",
   },
   {
-    nameAddress: "Hà Nội - 125 Trần Đại Nghĩa",
+    nameAddress: "Hà Nội - 125 Nam Từ Liêm",
     linkAddress: "https://zalo.me/0904583588",
     namelinkAddress: "Zalo: 0904.583.588",
   },
   {
-    nameAddress: "Hà Nội - 125 Trần Đại Nghĩa",
+    nameAddress: "TP.HCM - 34 Quận 1",
     linkAddress: "https://zalo.me/0904583588",
     namelinkAddress: "Zalo: 0904.583.588",
   },
   {
-    nameAddress: "Hà Nội - 125 Trần Đại Nghĩa",
+    nameAddress: "TP.HCM - 51 Quận 12",
     linkAddress: "https://zalo.me/0904583588",
     namelinkAddress: "Zalo: 0904.583.588",
   },
   {
-    nameAddress: "Hà Nội - 125 Trần Đại Nghĩa",
+    nameAddress: "Nghệ An - 128 Quỳnh Lưu",
     linkAddress: "https://zalo.me/0904583588",
     namelinkAddress: "Zalo: 0904.583.588",
   },
   {
-    nameAddress: "Hà Nội - 125 Trần Đại Nghĩa",
+    nameAddress: "Đà Nẵng - 4 Cầu Hàm Rồng",
     linkAddress: "https://zalo.me/0904583588",
     namelinkAddress: "Zalo: 0904.583.588",
   },

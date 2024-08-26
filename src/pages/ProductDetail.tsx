@@ -78,7 +78,7 @@ const ProductDetail: React.FC = () => {
     if (!productId) return;
 
     try {
-      const userId = 1; // Replace with logic to get the actual userId
+      const userId = 1;
 
       await axios.post(`http://localhost:8080/api/v1/reviews/create-reviews`, {
         content,

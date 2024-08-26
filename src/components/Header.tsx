@@ -80,21 +80,23 @@ const Header = () => {
           </div>
         </div>
 
-        <div>
-          <div style={{ marginTop: "7px" }} className="">
+        <div className="left-header">
+          <div className="">
             {user && user.username ? (
               <>
-                <span style={{ marginRight: "10px" }}>
-                  Xin chào {user.username}
-                </span>
+                <h6>Xin chào {user.username}</h6>
+                {/* Xin chào {user.username} */}
                 <button className="btn-logout" onClick={handleLogOut}>
-                  log out
+                  Đăng xuất
                 </button>
               </>
             ) : (
-              <div className="btn-login">
-                <Link to={"/login"}>Login</Link>
-              </div>
+              <>
+                <h6>Xin chào </h6>
+                <div className="btn-login">
+                  <Link to={"/login"}>Đăng nhập</Link>
+                </div>
+              </>
             )}
           </div>
           <ul className="navbar-nav">
@@ -109,7 +111,7 @@ const Header = () => {
                 aria-expanded="false"
               >
                 <i
-                  style={{ marginLeft: "100px" }}
+                  // style={{ marginLeft: "100px" }}
                   className="fas fa-shopping-cart"
                 ></i>
                 <span className="position-absolute top-0 start-1 badge badge-pill bg-danger">
