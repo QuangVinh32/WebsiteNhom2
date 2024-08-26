@@ -1,0 +1,45 @@
+.admin-sidebar-1 {
+    h3 {
+      text-align: center;
+      padding: 15px;
+      color: orangered;
+    }
+  
+    .list-unstyled-1 {
+      li {
+        margin-bottom: 10px;
+        list-style: none; /* Remove bullet points */
+
+        
+        a {
+          color: black;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          border: 1px solid orangered;
+          width: 195px;
+          border-radius: 5px;
+          height: 40px;
+          display: flex;
+          padding: 10px;
+
+          
+          &:hover {
+            color: orangered;
+            background-color: #f0f0f0;
+          }
+  
+          i {
+            margin-right: 8px;
+
+          }
+        }
+  
+        &.active a {
+          color: white;
+          background: linear-gradient(to right, #ff9900, #ff3366);
+        }
+      }
+    }
+  }
+  
